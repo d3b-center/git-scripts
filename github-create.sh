@@ -45,6 +45,5 @@ github-create() {
 
  echo -n "Pushing local code to remote ..."
  git remote add origin git@github.com:$org_name/$repo_name.git > /dev/null 2>&1
- git push -u origin master > /dev/null 2>&1
  echo " done."
 }
