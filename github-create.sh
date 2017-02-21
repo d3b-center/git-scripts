@@ -1,6 +1,7 @@
 github-create() {
  repo_name=$1
  org_name=$2
+ private=$3
 
  dir_name=`basename $(pwd)`
 
@@ -10,8 +11,13 @@ github-create() {
  fi
 
  if [ "$org_name" = "" ]; then
- echo "Org name (hit enter to use ideasync-team)?"
+ echo "Org name (hit enter to use d3b-center)?"
  read org_name
+ fi
+
+ if [ "$private" = "" ]; then
+ echo "Private Repo, true/false (hit enter to use false)?"
+ read private
  fi
 
  if [ "$repo_name" = "" ]; then
@@ -20,6 +26,10 @@ github-create() {
 
  if [ "$org_name" = "" ]; then
  org_name="ideasync-team"
+ fi
+
+ if [ "$private" = "" ]; then
+ private="false"
  fi
 
  username=`git config github.user`
@@ -39,11 +49,12 @@ github-create() {
  return 1
  fi
 
- echo -n "Creating Github repository '$repo_name' ..."
- curl -u "$username:$token" https://api.github.com/orgs/$org_name/repos -d '{"name":"'$repo_name'"}' > /dev/null 2>&1
+ echo -n "Creating Github repository '$repo_name' at https://api.github.com/orgs/$org_name/repos..."
+ curl -u "$username:$token" https://api.github.com/orgs/$org_name/repos -d '{"name":"'$repo_name'", "private":"'$private'"}' > /dev/null 2>&1
  echo " done."
 
  echo -n "Pushing local code to remote ..."
- git remote add origin git@github.com:$org_name/$repo_name.git > /dev/null 2>&1
+ git remote add origin https://github.com/$org_name/$repo_name.git > /dev/null 2>&1
+ git push -u origin master > /dev/null 2>&1
  echo " done."
 }
