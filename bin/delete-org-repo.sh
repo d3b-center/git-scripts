@@ -10,7 +10,7 @@ github-delete() {
  fi
 
  if [ "$org_name" = "" ]; then
- echo "Org name (hit enter to use ideasync-team)?"
+ echo "Org name (hit enter to use d3b-center)?"
  read org_name
  fi
 
@@ -19,7 +19,7 @@ github-delete() {
  fi
 
  if [ "$org_name" = "" ]; then
- org_name="ideasync-team"
+ org_name="d3b-center"
  fi
 
  token=`git config github.token`

@@ -25,7 +25,7 @@ github-create() {
  fi
 
  if [ "$org_name" = "" ]; then
- org_name="ideasync-team"
+ org_name="d3b-center"
  fi
 
  if [ "$private" = "" ]; then
