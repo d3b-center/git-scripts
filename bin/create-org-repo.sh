@@ -28,12 +28,17 @@ github-create() {
  read private
  fi
 
+if [ "$org_name" = "" ]; then
+ echo "Org name ( d3b-center | ideasync-team | kids-first:default)"
+ read org_name
+ fi
+
  if [ "$repo_name" = "" ]; then
  repo_name=$dir_name
  fi
 
  if [ "$org_name" = "" ]; then
- org_name="d3b-center"
+ org_name="kids-first"
  fi
 
  if [ "$private" = "" ]; then
